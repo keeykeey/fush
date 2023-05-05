@@ -26,11 +26,17 @@ void exec_command(command_t command)
 }
 
 int main(void) {
-    char c[30] = {};
-    catchCommandInput(c);
+    while(1) {
+        char c[30] = {};
+        catchCommandInput(c);
 
-    command_t cmdt = parse_command(c);
-    exec_command(cmdt);
+        command_t cmdt = parse_command(c);
 
+        if (strcmp(cmdt.cline,"stop") == 0) {
+            break;
+        } else {
+            exec_command(cmdt);
+        }
+    }
     return 0;
 }
