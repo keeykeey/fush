@@ -1,13 +1,14 @@
 #ifndef FUSH_CORE
 #define FUSH_CORE
 
-// MACRO
-typedef int hush_int;
+typedef struct command_s command_t;
+typedef struct fush_str_s fush_str_t;
+#include "fush.h"
+#include "fush_echo.h"
+#include "fush_int.h"
+#include "fush_string.h"
 
-
-// TYPE
-
-
-// PROTOTYPE
+#define FUSH_OK 0
+#define FUSH_NG 1
 
 #endif
