@@ -17,5 +17,12 @@ fush_string_test: ./test/fush_string_test.c
 	mv *.o ./test/
 	gcc -o fush_string_test ./test/fush_string_test.o ./test/fush_string.o
 
+fush_echo_test: ./test/fush_echo_test.c
+	gcc -c ./test/fush_echo_test.c
+	gcc -c ./src/core/fush_echo.c
+	gcc -c ./src/core/fush_string.c
+	mv *.o ./test/
+	gcc -o fush_echo_test ./test/fush_echo_test.o ./test/fush_echo.o ./test/fush_string.o
+
 clean:
-	rm -f ./*.o ./bin/*.o ./test/*.o
+	rm -f ./*.o ./bin/*.o ./test/*.o ./*_test

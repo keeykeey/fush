@@ -4,20 +4,18 @@
 // MACRO
 #define FUSH_STOP_RUNNING 0
 #define FUSH_CONTINUE_RUNNING 1
-#define COMMAND_LINE_MAX_LEN 30
 
-#include "fush_echo.h"
+#include "./fush_core.h"
+#include "./fush_config.h"
 
 // TYPE
-
 typedef struct command_s command_t;
 struct command_s {
-    char      cline[COMMAND_LINE_MAX_LEN];
+    fush_str_t      *cline;
 };
 
 // PROTOTYPE
-void catch_command_input(char command[COMMAND_LINE_MAX_LEN]);
-command_t parse_command(char command[COMMAND_LINE_MAX_LEN]);
-int exec_command(command_t command);
+void catch_command_input(fush_str_t *input_str);
+command_t *parse_command(char *fush_str_t);
 
 #endif

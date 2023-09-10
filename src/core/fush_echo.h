@@ -2,13 +2,12 @@
 #define FUSH_ECHO
 
 // MACRO
-#include "./fush.h"
+#include "./fush_core.h"
+#include "./fush_config.h"
 
 // TYPE
 
-typedef struct command_s command_t;
-
 // PROTOTYPE
-void fush_echo(command_t);
+void fush_echo(command_t *command);
 
 #endif
