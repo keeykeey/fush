@@ -4,8 +4,8 @@
 
 void catch_command_input(char command[COMMAND_LINE_MAX_LEN])
 {
-    putchar('>');
-    scanf("%[^\n]%*c",command);
+    fputc('>', stdout);
+    scanf("%[^\n]%*c", command);
 }
 
 command_t parse_command(char command[COMMAND_LINE_MAX_LEN])
@@ -18,7 +18,7 @@ command_t parse_command(char command[COMMAND_LINE_MAX_LEN])
 
 int exec_command(command_t command)
 {
-    if (strcmp(command.cline, "stop") == 0) {
+    if (strcmp(command.cline, FUSH_STOP_COMMAND) == 0) {
         return FUSH_STOP_RUNNING;
     } else {
         fush_echo(command);
@@ -27,9 +27,9 @@ int exec_command(command_t command)
 }
 
 int main(void) {
-    int wait = 1;
+    int wait = FUSH_CONTINUE_RUNNING;
     while (wait) {
-        char c[30] = {};
+        char c[COMMAND_LINE_MAX_LEN] = {};
         catch_command_input(c);
 
         command_t cmdt = parse_command(c);
