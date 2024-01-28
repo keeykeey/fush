@@ -20,6 +20,9 @@ int exec_command(command_t command)
 {
     if (strcmp(command.cline, FUSH_STOP_COMMAND) == 0) {
         return FUSH_STOP_RUNNING;
+    } else if(strcmp(command.cline, FUSH_TOUCH_COMMAND) == 0) {
+        fush_touch(command);
+        return FUSH_CONTINUE_RUNNING;
     } else {
         fush_echo(command);
         return FUSH_CONTINUE_RUNNING;

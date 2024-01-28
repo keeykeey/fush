@@ -8,6 +8,7 @@
 #define FUSH_STOP_COMMAND "stop"
 
 #include "fush_echo.h"
+#include "fush_touch.h"
 
 // TYPE
 
