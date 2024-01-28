@@ -5,8 +5,10 @@
 #define FUSH_STOP_RUNNING 0
 #define FUSH_CONTINUE_RUNNING 1
 #define COMMAND_LINE_MAX_LEN 30
+#define FUSH_STOP_COMMAND "stop"
 
 #include "fush_echo.h"
+#include "fush_touch.h"
 
 // TYPE
 
