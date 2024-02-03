@@ -2,25 +2,40 @@
 #include <stdio.h>
 #include <string.h>
 
-void catch_command_input(char command[COMMAND_LINE_MAX_LEN])
+void catch_command_input(char command[INPUT_MAX_LEN])
 {
     fputc('>', stdout);
     scanf("%[^\n]%*c", command);
 }
 
-command_t parse_command(char command[COMMAND_LINE_MAX_LEN])
+command_t parse_command(char command[INPUT_MAX_LEN])
 {
     command_t cmdt;
-    strcpy(cmdt.cline, command);
+    int cc = 0;
+    int cl = 0;
+    for (int i = 0; i < COMMAND_LINE_MAX_LEN; i++ ) {
+        if (command[i] < 'a' || command[i] > 'z') {
+            while (command[i] < 'a' || command[i] > 'z') {
+                i++;
+            }
+            cmdt.cline[cc][cl] = '\0';
+            i -= 1;
+            cl = 0;
+            cc++;
+        } else {
+          cmdt.cline[cc][cl] = command[i];
+          cl++;
+        }
+    }
 
     return cmdt;
 }
 
 int exec_command(command_t command)
 {
-    if (strcmp(command.cline, FUSH_STOP_COMMAND) == 0) {
+    if (strcmp(command.cline[0], FUSH_STOP_COMMAND) == 0) {
         return FUSH_STOP_RUNNING;
-    } else if(strcmp(command.cline, FUSH_TOUCH_COMMAND) == 0) {
+    } else if(strcmp(command.cline[0], FUSH_TOUCH_COMMAND) == 0) {
         fush_touch(command);
         return FUSH_CONTINUE_RUNNING;
     } else {
@@ -32,10 +47,10 @@ int exec_command(command_t command)
 int main(void) {
     int wait = FUSH_CONTINUE_RUNNING;
     while (wait) {
-        char c[COMMAND_LINE_MAX_LEN] = {};
-        catch_command_input(c);
+        char input[INPUT_MAX_LEN] = {'\0'};
+        catch_command_input(input);
 
-        command_t cmdt = parse_command(c);
+        command_t cmdt = parse_command(input);
 
         wait = exec_command(cmdt);
     }
