@@ -3,8 +3,12 @@
 
 void fush_touch(command_t cmd)
 {
+    if ( *cmd.cline[1] == '\0') return;
+
     FILE *fp;
-    if ((fp = fopen("touch_test.txt", "a")) == NULL) {
+    char *fname = cmd.cline[1];
+
+    if ((fp = fopen(fname, "a")) == NULL) {
         fprintf(stderr, "failed to exec command\n");
     }
     fclose(fp);
