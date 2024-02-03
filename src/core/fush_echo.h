@@ -1,8 +1,9 @@
 #ifndef FUSH_ECHO
 #define FUSH_ECHO
 
-// MACRO
 #include "./fush.h"
+
+// MACRO
 
 // TYPE
 
