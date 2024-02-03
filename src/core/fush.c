@@ -14,8 +14,8 @@ command_t parse_command(char command[INPUT_MAX_LEN])
     int cc = 0;
     int cl = 0;
     for (int i = 0; i < COMMAND_LINE_MAX_LEN; i++ ) {
-        if (command[i] < 'a' || command[i] > 'z') {
-            while (command[i] < 'a' || command[i] > 'z') {
+        if (!is_fush_command_c(command[i])) {
+            while (!is_fush_command_c(command[i])) {
                 i++;
             }
             cmdt.cline[cc][cl] = '\0';
@@ -23,12 +23,26 @@ command_t parse_command(char command[INPUT_MAX_LEN])
             cl = 0;
             cc++;
         } else {
-          cmdt.cline[cc][cl] = command[i];
-          cl++;
+            cmdt.cline[cc][cl] = command[i];
+            cl++;
         }
     }
 
     return cmdt;
+}
+
+int is_fush_command_c(char c) {
+    if (c >= 'a' && c <= 'z') {
+        return VALID_COMMAND_CHAR;
+    }
+    if (c >= 'A' && c <= 'Z') {
+        return VALID_COMMAND_CHAR;
+    }
+    if (c == '.' || c == '-' || c == '_') {
+        return VALID_COMMAND_CHAR;
+    }
+
+    return INVALID_COMMAND_CHAR;
 }
 
 int exec_command(command_t command)

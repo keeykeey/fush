@@ -4,6 +4,8 @@
 // MACRO
 #define FUSH_STOP_RUNNING 0
 #define FUSH_CONTINUE_RUNNING 1
+#define INVALID_COMMAND_CHAR 0
+#define VALID_COMMAND_CHAR 1
 #define INPUT_MAX_LEN 30
 #define COMMAND_LINE_MAX_LEN 15
 #define COMMAND_COUNT 2
@@ -21,6 +23,7 @@ struct command_s {
 // PROTOTYPE
 void catch_command_input(char input[INPUT_MAX_LEN]);
 command_t parse_command(char input[INPUT_MAX_LEN]);
+int is_fush_command_c(char c);
 int exec_command(command_t command);
 
 #endif
