@@ -13,6 +13,7 @@
 
 #include "fush_echo.h"
 #include "fush_touch.h"
+#include "fush_cat.h"
 
 // TYPE
 typedef struct command_s command_t;
