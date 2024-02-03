@@ -1,12 +1,6 @@
 #include "./fush.h"
+#include "../util/fush_file.h"
 #include <stdio.h>
-
-static void copy(FILE *src, FILE *dst) {
-    int ch;
-    while ((ch = fgetc(src)) != EOF) {
-        fputc(ch, dst);
-    }
-}
 
 void fush_cat(command_t cmd)
 {
@@ -14,9 +8,7 @@ void fush_cat(command_t cmd)
     if ((fp = fopen(cmd.cline[1], "r")) == NULL) {
         fprintf(stderr, "failed to open the file\n");
     } else {
-        int i = 0;
-        char c[] = {};
-        copy(fp, stdout);
+        fush_fcopy(fp, stdout);
         fputc('\n', stdout);
     }
     fclose(fp);
