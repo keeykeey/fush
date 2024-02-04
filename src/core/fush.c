@@ -56,6 +56,8 @@ int exec_command(command_t command)
         fush_touch(command);
     } else if(strcmp(command.cline[0], FUSH_CAT_COMMAND) == 0) {
         fush_cat(command);
+    } else if(strcmp(command.cline[0], FUSH_RM_COMMAND) == 0) {
+        fush_rm(command);
     } else {
         fush_echo(command);
     }
