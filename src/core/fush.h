@@ -8,11 +8,13 @@
 #define VALID_COMMAND_CHAR 1
 #define INPUT_MAX_LEN 30
 #define COMMAND_LINE_MAX_LEN 15
-#define COMMAND_COUNT 2
+#define COMMAND_COUNT 3
 #define FUSH_STOP_COMMAND "stop"
 
 #include "fush_echo.h"
 #include "fush_touch.h"
+#include "fush_cat.h"
+#include "fush_rm.h"
 
 // TYPE
 typedef struct command_s command_t;

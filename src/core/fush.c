@@ -38,6 +38,9 @@ int is_fush_command_c(char c) {
     if (c >= 'A' && c <= 'Z') {
         return VALID_COMMAND_CHAR;
     }
+    if (c >= '0' && c <= '9') {
+        return VALID_COMMAND_CHAR;
+    }
     if (c == '.' || c == '-' || c == '_') {
         return VALID_COMMAND_CHAR;
     }
@@ -51,11 +54,14 @@ int exec_command(command_t command)
         return FUSH_STOP_RUNNING;
     } else if(strcmp(command.cline[0], FUSH_TOUCH_COMMAND) == 0) {
         fush_touch(command);
-        return FUSH_CONTINUE_RUNNING;
+    } else if(strcmp(command.cline[0], FUSH_CAT_COMMAND) == 0) {
+        fush_cat(command);
+    } else if(strcmp(command.cline[0], FUSH_RM_COMMAND) == 0) {
+        fush_rm(command);
     } else {
         fush_echo(command);
-        return FUSH_CONTINUE_RUNNING;
     }
+    return FUSH_CONTINUE_RUNNING;
 }
 
 int main(void) {
